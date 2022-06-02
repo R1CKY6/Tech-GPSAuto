@@ -7,10 +7,10 @@ RegisterNetEvent('ricky:gps')
 AddEventHandler('ricky:gps', function()
     ESX.UI.Menu.Open('default',GetCurrentResourceName(), 'menu_gps4',
     { 
-    title = 'Menu GPS', 
+    title = Ricky_Lang['title_menu'] 
     align = 'top-left', 
     elements = {
-        {label = "Attacca/Rimuovi GPS", value = 'attaccagps'},
+        {label = Ricky_Lang['menu_option'], value = 'attaccagps'},
     } 
     }, function(data, menu)
       local valore = data.current.value
@@ -31,11 +31,11 @@ AttivaGPS = function()
     local posizione = #vector3(coords - GetEntityCoords(PlayerPedId()))
 
     if posizione > 3.0 then
-        return ESX.ShowNotification("Devi essere vicino ad un veicolo")
+        return ESX.ShowNotification(Ricky_Lang['nessun_veicolo_vicino'])
     end
 
     if attivata and PlayerPedId() == utente then
-        ESX.ShowNotification("GPS Attaccato")
+        ESX.ShowNotification(Ricky_Lang['gps_attaccato'])
         hash = GetHashKey(veicolo)
         SetBlip(coords)
     Citizen.CreateThread(function()
@@ -49,10 +49,10 @@ AttivaGPS = function()
     end)
   else
     if GetHashKey(ESX.Game.GetClosestVehicle(GetEntityCoords(PlayerPedId(), true))) == hash then
-        ESX.ShowNotification("Stai rimuovendo il GPS...")
+        ESX.ShowNotification(Ricky_Lang['gps_tolto'])
         attivata = false
     else
-        ESX.ShowNotification("Non sei vicino all\'auto giusta")
+        ESX.ShowNotification(Ricky_Lang['auto_sbagliata'])
         attivata = true
     end
   end
