@@ -7,7 +7,7 @@ RegisterNetEvent('ricky:gps')
 AddEventHandler('ricky:gps', function()
     ESX.UI.Menu.Open('default',GetCurrentResourceName(), 'menu_gps4',
     { 
-    title = Ricky_Lang['title_menu'] 
+    title = Ricky_Lang['title_menu'], 
     align = 'top-left', 
     elements = {
         {label = Ricky_Lang['menu_option'], value = 'attaccagps'},
